@@ -25,7 +25,8 @@ require_once(dirname(__FILE__) . '/inc/route.php');
 add_action('wp_head', function () {
   echo "<script>
   partytown = {
-    lib: '" . plugin_dir_url(__FILE__) . "public/~partytown/',
+    // only relative
+    lib: '" . str_replace(get_site_url(), '', plugin_dir_url(__FILE__)) . "public/~partytown/',
     debug: true,
     resolveUrl: function (url, location, type) {
         // nonce for filter request, set the cache of website to 8h max
@@ -39,9 +40,9 @@ add_action('wp_head', function () {
         return url;
       },
     };
-    </script>";
+  </script>";
   // include code partytown
   echo '<script>';
   include(dirname(__FILE__) . '/partytown.js');
   echo '</script>';
-}, 9);
+}, 1);
