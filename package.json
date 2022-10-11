@@ -1,0 +1,19 @@
+{
+  "name": "wp-performance-partytown",
+  "version": "0.0.1",
+  "description": "partytown in your WordPress",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run cp:partytown && node index.mjs",
+    "cp:partytown": "partytown copylib public/~partytown"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@builder.io/partytown": "^0.7.1"
+  },
+  "devDependencies": {
+    "husky": "^8.0.1"
+  }
+}
