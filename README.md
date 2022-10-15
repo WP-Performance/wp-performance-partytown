@@ -1,1 +1,36 @@
-WIP...
+## Partytown in your WordPress
+
+### 🚨 Be careful, the proxy php is a experimental code. You can use it, but i'm not responsible of the security of your website
+
+
+This plugin add [Partytown](https://partytown.builder.io/) available for your website
+
+
+## For use Proxy PHP, add this line in your wp-config.php.
+
+```
+define('PR_PROXY', true);
+```
+
+
+## Define proxy key for connected users. In your wp-config.php
+
+```
+define('PR_PROXY_KEY', 'key of your choice');
+```
+
+
+## Add script for partytown
+
+Juste add type "text/partytown" in ```<script>``` tag
+
+Example :
+```
+<!-- Google Tag Manager -->
+<script type="text/partytown">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','');</script>
+<!-- End Google Tag Manager -->
+```

@@ -1,16 +1,22 @@
 <?php
 
-add_action('rest_api_init', function () {
+namespace WPPerformance\partytown\inc;
 
-  register_rest_route('partytown/pr', 'getPR', array(
-    'methods'  => 'GET',
-    'callback' =>  __NAMESPACE__ . '\getPR',
-    // control nonce
-    'permission_callback' => function (\WP_REST_Request $request) {
-      $nonce = $request->get_param('pt_nonce');
-      return wp_verify_nonce($nonce, 'partytown_proxy');
-    }
-  ));
+
+add_action('rest_api_init', function () {
+  // if activate
+  if (PR_PROXY === true) {
+    register_rest_route('partytown/pr', 'getPR', array(
+      'methods'  => 'GET',
+      'callback' =>  __NAMESPACE__ . '\getPR',
+      // control nonce
+      'permission_callback' => function (\WP_REST_Request $request) {
+        $nonce = $request->get_param('pt_nonce');
+        // nonce don't work in API REST because user id is always 0
+        return wp_verify_nonce($nonce, 'partytown_proxy') || $nonce === PR_PROXY_KEY;
+      }
+    ));
+  }
 });
 
 
@@ -65,7 +71,9 @@ function getPR(\WP_REST_Request $request)
   $request_headers = iterator_to_array(reformat($request_headers));
   curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);
   // set cookies
-  curl_setopt($ch, CURLOPT_HTTPHEADER, $h['cookie']);
+  if (array_key_exists('cookie', $h)) {
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $h['cookie']);
+  }
 
   // message body
   $request_body = file_get_contents('php://input');
@@ -89,12 +97,14 @@ function getPR(\WP_REST_Request $request)
   $response_body = curl_exec($ch);
   $response_code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
   curl_close($ch);
+
   // return header from curl response
   http_response_code($response_code);
   foreach ($response_headers as $name => $values) {
     foreach ($values as $value) {
-      header("$name: $value", false);
+      header("$name: $value");
     }
   }
   echo $response_body;
+  exit;
 }
