@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run cp:partytown && node index.mjs",
-    "cp:partytown": "partytown copylib public/~partytown"
+    "cp:partytown": "partytown copylib public/~partytown",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
     "@builder.io/partytown": "^0.7.1",
     "husky": "^8.0.1"
