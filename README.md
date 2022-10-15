@@ -8,6 +8,8 @@ This plugin add [Partytown](https://partytown.builder.io/) available for your we
 
 ## For use Proxy PHP, add this line in your wp-config.php.
 
+☝🏻 use it only if you know what you do
+
 ```
 define('PR_PROXY', true);
 ```
