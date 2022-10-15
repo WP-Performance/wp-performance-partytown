@@ -12,6 +12,10 @@ This plugin add [Partytown](https://partytown.builder.io/) available for your we
 define('PR_PROXY', true);
 ```
 
+The proxy is only necessary when service don't have ```Access-Control-Allow-Origin: *``` in response.
+For example, Google Analytics, has this CORS headers.
+More informations, [here](https://partytown.builder.io/proxying-requests)
+
 
 ## Define proxy key for connected users. In your wp-config.php
 
