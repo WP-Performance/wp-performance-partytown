@@ -6,6 +6,9 @@
 This plugin add [Partytown](https://partytown.builder.io/) available for your website
 
 
+If you use proxy, set the cache lifetime to max 8h for avoid nonce bug.
+
+
 ## For use Proxy PHP, add this line in your wp-config.php.
 
 ☝🏻 use it only if you know what you do
@@ -23,6 +26,12 @@ More informations, [here](https://partytown.builder.io/proxying-requests)
 
 ```
 define('PR_PROXY_KEY', 'key of your choice');
+```
+
+## Debug => In your wp-config.php
+
+```
+define('PR_DEBUG', true);
 ```
 
 

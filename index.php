@@ -19,6 +19,10 @@ namespace WPPerformance\partytown;
 
 require_once(dirname(__FILE__) . '/inc/route.php');
 
+if (!defined('PR_DEBUG')) {
+  define('PR_DEBUG', false);
+}
+
 if (!defined('PR_PROXY')) {
   define('PR_PROXY', false);
 }
@@ -35,8 +39,8 @@ add_action('wp_head', function () {
   partytown = {
     // only relative
     lib: '" . str_replace(get_site_url(), '', plugin_dir_url(__FILE__)) . "public/~partytown/',
-    debug: true,
-    resolveUrl: function (url, location, type) {
+    debug: " .  (PR_DEBUG ? 'true' : 'false') . ",
+    " . (PR_PROXY ? "resolveUrl: function (url, location, type) {
         // nonce for filter request, set the cache of website to 8h max
         var pt_nonce = '" . (is_user_logged_in() ? PR_PROXY_KEY : wp_create_nonce('partytown_proxy')) . "';
         if (type === 'script' || type === 'iframe') {
@@ -46,8 +50,7 @@ add_action('wp_head', function () {
           return proxyUrl;
         }
         return url;
-      },
-    };
+      }," : null) . "};
   </script>";
   // include code partytown
   echo '<script>';
