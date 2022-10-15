@@ -10,10 +10,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@builder.io/partytown": "^0.7.1"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@builder.io/partytown": "^0.7.1",
     "husky": "^8.0.1"
   }
 }
