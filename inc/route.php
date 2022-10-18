@@ -34,7 +34,7 @@ function getPR(\WP_REST_Request $request)
 
   $method = $request->get_method();
   // url in param
-  $urlRaw = sanitize_text_field($request->get_param('url'));
+  $urlRaw = sanitize_url($request->get_param('url'));
 
   // extract url
   $url_components = parse_url($urlRaw);
