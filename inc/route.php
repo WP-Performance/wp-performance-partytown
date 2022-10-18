@@ -34,7 +34,7 @@ function getPR(\WP_REST_Request $request)
 
   $method = $request->get_method();
   // url in param
-  $urlRaw = $request->get_param('url');
+  $urlRaw = sanitize_text_field($request->get_param('url'));
 
   // extract url
   $url_components = parse_url($urlRaw);
@@ -60,7 +60,7 @@ function getPR(\WP_REST_Request $request)
       $key !== 'host'
       && $key !== 'cookie'
     ) {
-      $request_headers[$key] = $value[0];
+      $request_headers[$key] = sanitize_text_field($value[0]);
     }
   }
   // set to host the service
@@ -77,7 +77,7 @@ function getPR(\WP_REST_Request $request)
 
   // message body
   $request_body = file_get_contents('php://input');
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $request_body);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, sanitize_text_field($request_body));
 
   $response_headers = [];
   // catch header from response
