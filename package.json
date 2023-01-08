@@ -1,18 +1,18 @@
 {
-  "name": "wp-performance-partytown",
-  "version": "0.0.1",
-  "description": "partytown in your WordPress",
-  "main": "index.js",
-  "scripts": {
-    "build": "npm run cp:partytown && node index.mjs",
-    "cp:partytown": "partytown copylib public/~partytown",
-    "prepare": "husky install"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@builder.io/partytown": "^0.7.1",
-    "husky": "^8.0.1"
-  }
+    "name": "wp-performance-partytown",
+    "version": "0.0.1",
+    "description": "partytown in your WordPress",
+    "main": "index.js",
+    "scripts": {
+        "build": "npm run cp:partytown && node index.mjs",
+        "cp:partytown": "partytown copylib public/~partytown",
+        "prepare": "husky install"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@builder.io/partytown": "^0.7.4",
+        "husky": "^8.0.3"
+    }
 }
