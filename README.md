@@ -49,3 +49,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','');</script>
 <!-- End Google Tag Manager -->
 ```
+
+
+## Launch partytown parsing after cookie acceptation
+
+Dispatch load event for trigger partytown parsing.
+```
+const load = new Event('load');
+window.dispatchEvent(load)
+```
